@@ -42,3 +42,18 @@ export async function getUsers() {
     });
     return users || null; // 값이 있으면 보내고 없으면 null을 보내라.
 }
+
+export async function updateUserFullField(args) {
+    const {
+        username, password, nickname, name, phone,
+    } = args;
+    const user = await UserRepository.findOne({ username });
+    if (!user) return false;
+    user.username = username;
+    user.password = password;
+    user.nickname = nickname;
+    user.name = name;
+    user.phone = phone;
+    await user.save();
+    return true;
+}
