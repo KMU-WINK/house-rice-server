@@ -1,4 +1,10 @@
 import UserRepository from '../repositorys/user-repository';
+import crypto from 'crypto';
+
+function gensalt() {
+    const rand = crypto.randomBytes(20).toString('hex');
+    return String(rand);
+}
 
 export async function register(args) {
     /*
@@ -12,12 +18,15 @@ export async function register(args) {
         name, username, password, nickname, phone,
     } = args; // args 에서 왼쪽 내용들을 꺼낸다.
     if (!await UserRepository.findOne({ username })) {
+        const salt = gensalt();
+        const hashed = crypto.createHmac('sha512', salt).update(password).digest('hex');
         const newUser = new UserRepository({
             name,
             username,
-            password,
+            password: hashed,
             nickname,
             phone,
+            salt,
         });
         await newUser.save();
     } else {

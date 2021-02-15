@@ -22,14 +22,17 @@
     "@babel/core": "^7.12.13",
     "@babel/node": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
+    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.11.15",
     "nodemon": "^2.0.7"
   },
   "devDependencies": {
-    "eslint": "7.2.0",
+    "eslint": "^7.2.0",
     "eslint-config-airbnb": "18.2.0",
     "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-jsx-a11y": "^6.3.0"
