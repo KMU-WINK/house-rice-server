@@ -1,9 +1,9 @@
 import UserRepository from '../repositorys/user-repository';
 import crypto from 'crypto';
 
-function gensalt(){
-    const rand = Math.floor(Math.random() * 1000);
-    return rand + '';
+function gensalt() {
+    const rand = crypto.randomBytes(20).toString('hex');
+    return String(rand);
 }
 
 export async function register(args) {
