@@ -19,15 +19,30 @@ router.post('/', (req, res) => {
         username, password, nickname, name, phone,
     });
 
-    res.status(200).json({ test: 'test' });
+    res.status(200).json({ test: 'test' });	
+	
 });
 
 router.get('/:id', (req, res) => {
     // 한 명의 유저만 가져옵니다.
+
 });
 
 router.patch('/:id', (req, res) => {
+	// 회원정보 수정
+});
 
+router.delete('/:id', async (req, res) => {
+	// 회원탈퇴
+	
+	const isModified = await userService.withdrawal(req.params.id);
+	
+	if (isModified) {
+		res.status(200).json({msg : "회원탈퇴가 완료되었습니다!"});
+	} else {
+		res.status(404).json({msg : "존재하지 않는 회원입니다!"});
+	}
+	
 });
 
 export default router;
